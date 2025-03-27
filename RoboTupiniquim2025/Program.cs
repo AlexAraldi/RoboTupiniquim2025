@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Runtime.Intrinsics.X86;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace RoboTupiniquim2025
 {
@@ -17,80 +17,71 @@ namespace RoboTupiniquim2025
     {
         static void Main(string[] args)
         {
-            while (true)
+
+            Console.Clear();
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Robo Tupiniquim - Missão Marte");
+            Console.WriteLine("---------------------------------------------");
+
+            Console.Write("Informe do tamanho do Grid (X espaço Y): ");
+            string[] grid = Console.ReadLine().Split(' ');
+            int limiteX = int.Parse(grid[0]);
+            int limiteY = int.Parse(grid[1]);
+
+            Console.WriteLine("Informe a posição inicial do Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
+            string[] posicoes = Console.ReadLine().Split(' ');
+            int posicaoX = int.Parse(posicoes[0]);
+            int posicaoY = int.Parse(posicoes[1]);
+            char direcao = char.Parse(posicoes[2]);
+
+            Console.WriteLine("Informe os comandos que o Robô01 deve executar:(Ex:EMEMEMEMM) ");
+            string comando = Console.ReadLine();
+            char[] instrucoes = comando.ToCharArray();
+//_____________________________________________________________________________________movimentos do Robô____________
+
+            for (int i = 0; i < instrucoes.Length; i++)
             {
-                Console.Clear();
-                Console.WriteLine("---------------------------------------------");
-                Console.WriteLine("Robo Tupiniquim - Missão Marte");
-                Console.WriteLine("---------------------------------------------");
-
-                //------------------------------------------------Criar entrada da posição inicial do robô do grid
-
-                string comando = "EMEMEMEMM";
-
-                char[] instrucoes = comando.ToCharArray();
-
-                int mapaGridX = 5;
-                int mapaGridY = 5;
-                char direcao = 'N';
-                int posicaoX = 1;
-                int posicaoY = 2;
-
-                for (int i = 0; i < instrucoes.Length; i++)
+                if (instrucoes[i] == 'D')
                 {
-                    if (instrucoes[i] == 'D')
-                    {
-                        if (direcao == 'N')
-                            direcao = 'L';
-                        else if (direcao == 'L')
-                            direcao = 'S';
-                        else if (direcao == 'S')
-                            direcao = 'O';
-                        else if (direcao == 'O')
-                            direcao = 'N';
-                    }
-
-                    if (instrucoes[i] == 'E')
-                    {
-                        if (direcao == 'N')
-                            direcao = 'O';
-                        else if (direcao == 'L')
-                            direcao = 'N';
-                        else if (direcao == 'S')
-                            direcao = 'L';
-                        else if (direcao == 'O')
-                            direcao = 'S';
-
-                    }
-                    if (instrucoes[i] == 'M')
-                    {
-                        if (direcao == 'N')
-                            posicaoY++;
-                        else if (direcao == 'S')
-                            posicaoY--;
-                        else if (direcao == 'O')
-                            posicaoX--;
-                        else if (direcao == 'L')
-                            posicaoX++;
-                    }
-
-
-
-
-
-
+                    if (direcao == 'N')
+                        direcao = 'L';
+                    else if (direcao == 'L')
+                        direcao = 'S';
+                    else if (direcao == 'S')
+                        direcao = 'O';
+                    else if (direcao == 'O')
+                        direcao = 'N';
+                }
+                else if (instrucoes[i] == 'E')
+                {
+                    if (direcao == 'N')
+                        direcao = 'O';
+                    else if (direcao == 'L')
+                        direcao = 'N';
+                    else if (direcao == 'S')
+                        direcao = 'L';
+                    else if (direcao == 'O')
+                        direcao = 'S';
 
                 }
-                    else if (instrucoes[i] == 'M')
+                else if (instrucoes[i] == 'M')
                 {
-                    posicaoY++;
+                    if (direcao == 'N')
+                        posicaoY++;
+                    else if (direcao == 'S')
+                        posicaoY--;
+                    else if (direcao == 'O')
+                        posicaoX--;
+                    else if (direcao == 'L')
+                        posicaoX++;
                 }
-
-
             }
+//---------------------------------------------------------------------------------------------------------------------------------
+            //validar os limites do grid  e criar novo robo
+            Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
             Console.ReadLine();
         }
     }
 }
-}
+
 
