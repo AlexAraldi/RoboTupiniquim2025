@@ -23,22 +23,20 @@ namespace RoboTupiniquim2025
             Console.WriteLine("Robo Tupiniquim - Missão Marte");
             Console.WriteLine("---------------------------------------------");
 
-            Console.Write("Informe do tamanho do Grid (X espaço Y): ");
+            Console.Write("Informe os valores do tamanho do PRIMEIRO Grid (X espaço Y): ");
             string[] grid = Console.ReadLine().Split(' ');
             int limiteX = int.Parse(grid[0]);
             int limiteY = int.Parse(grid[1]);
 
-            Console.WriteLine("Informe a posição inicial do Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
+            Console.WriteLine("Informe a posição inicial do PRIMEIRO Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
             string[] posicoes = Console.ReadLine().Split(' ');
             int posicaoX = int.Parse(posicoes[0]);
             int posicaoY = int.Parse(posicoes[1]);
             char direcao = char.Parse(posicoes[2]);
 
-            Console.WriteLine("Informe os comandos que o Robô01 deve executar:(Ex:EMEMEMEMM) ");
+            Console.WriteLine("Informe os comandos que o PRIMEIRO Robô deve executar:(Ex:EMEMEMEMM) ");
             string comando = Console.ReadLine();
             char[] instrucoes = comando.ToCharArray();
-//_____________________________________________________________________________________movimentos do Robô____________
-
             for (int i = 0; i < instrucoes.Length; i++)
             {
                 if (instrucoes[i] == 'D')
@@ -76,10 +74,84 @@ namespace RoboTupiniquim2025
                         posicaoX++;
                 }
             }
-//---------------------------------------------------------------------------------------------------------------------------------
-            //validar os limites do grid  e criar novo robo
-            Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
-            Console.ReadLine();
+            if (posicaoX > limiteX || posicaoY > limiteY)
+            {
+                Console.WriteLine("O Robô estrapolou o PRIMEIRO grid");
+                Console.ReadLine();
+            }
+            else 
+            {
+                Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
+                Console.ReadLine();
+            }
+
+
+            //------------------------------------- SEGUNDO ROBÔ --------------------------------------------
+
+
+            Console.Write("Informe os valores do tamanho do SEGUNDO Grid (X espaço Y): ");
+            string[] grid2 = Console.ReadLine().Split(' ');
+            int limiteX2 = int.Parse(grid2[0]);
+            int limiteY2 = int.Parse(grid2[1]);
+
+            Console.WriteLine("Informe a posição inicial do SEGUNDO Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
+            string[] posicoes2 = Console.ReadLine().Split(' ');
+            int posicaoX2 = int.Parse(posicoes2[0]);
+            int posicaoY2 = int.Parse(posicoes2[1]);
+            char direcao2 = char.Parse(posicoes2[2]);
+
+            Console.WriteLine("Informe os comandos que o SEGUNDO Robô deve executar:(Ex:EMEMEMEMM) ");
+            string comando2 = Console.ReadLine();
+            char[] instrucoes2 = comando2.ToCharArray();
+            for (int i = 0; i < instrucoes.Length; i++)
+            {
+                if (instrucoes2[i] == 'D')
+                {
+                    if (direcao2 == 'N')
+                        direcao2 = 'L';
+                    else if (direcao2 == 'L')
+                        direcao2 = 'S';
+                    else if (direcao2 == 'S')
+                        direcao2 = 'O';
+                    else if (direcao2 == 'O')
+                        direcao2 = 'N';
+                }
+                else if (instrucoes2[i] == 'E')
+                {
+                    if (direcao2 == 'N')
+                        direcao2 = 'O';
+                    else if (direcao2 == 'L')
+                        direcao2 = 'N';
+                    else if (direcao2 == 'S')
+                        direcao2 = 'L';
+                    else if (direcao2 == 'O')
+                        direcao2 = 'S';
+
+                }
+                else if (instrucoes2[i] == 'M')
+                {
+                    if (direcao2 == 'N')
+                        posicaoY2++;
+                    else if (direcao2 == 'S')
+                        posicaoY2--;
+                    else if (direcao2 == 'O')
+                        posicaoX2--;
+                    else if (direcao2 == 'L')
+                        posicaoX2++;
+                }
+            }
+            if (posicaoX2 > limiteX2 || posicaoY2 > limiteY2)
+            {
+                Console.WriteLine("O Robô estrapolou o SEGUNDO grid");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine($"{posicaoX2} {posicaoY2} {direcao2}");
+                Console.ReadLine();
+            }
+
+
         }
     }
 }
