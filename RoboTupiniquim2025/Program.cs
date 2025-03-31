@@ -18,10 +18,7 @@ namespace RoboTupiniquim2025
         static void Main(string[] args)
         {
 
-            Console.Clear();
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Robo Tupiniquim - Missão Marte");
-            Console.WriteLine("---------------------------------------------");
+            ExibirMenu();
 
             Console.Write("Informe os valores do tamanho do PRIMEIRO Grid (X espaço Y): ");
             string[] grid = Console.ReadLine().Split(' ');
@@ -105,6 +102,7 @@ namespace RoboTupiniquim2025
             char[] instrucoes2 = comando2.ToCharArray();
             for (int i = 0; i < instrucoes.Length; i++)
             {
+                
                 if (instrucoes2[i] == 'D')
                 {
                     if (direcao2 == 'N')
@@ -152,6 +150,13 @@ namespace RoboTupiniquim2025
             }
 
 
+        }
+        static void ExibirMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Robo Tupiniquim - Missão Marte");
+            Console.WriteLine("---------------------------------------------");
         }
     }
 }
