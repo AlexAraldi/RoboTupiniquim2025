@@ -18,145 +18,149 @@ namespace RoboTupiniquim2025
         static void Main(string[] args)
         {
 
-            ExibirMenu();
+            string[] posicoesIniciais = ["1 2 N", "3 3 L"];
+            string[] comandosIniciais = ["EMEMEMEMM", "MMDMMDMDDM"];
 
-            Console.Write("Informe os valores do tamanho do PRIMEIRO Grid (X espaço Y): ");
-            string[] grid = Console.ReadLine().Split(' ');
-            int limiteX = int.Parse(grid[0]);
-            int limiteY = int.Parse(grid[1]);
+            #region Movimentos do primeiro robô
+            string[] coordenadasAtuais = posicoesIniciais[0].Split(' ');
 
-            Console.WriteLine("Informe a posição inicial do PRIMEIRO Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
-            string[] posicoes = Console.ReadLine().Split(' ');
-            int posicaoX = int.Parse(posicoes[0]);
-            int posicaoY = int.Parse(posicoes[1]);
-            char direcao = char.Parse(posicoes[2]);
+            int posicaoXRoboUm = Convert.ToInt32(coordenadasAtuais[0]);
+            int posicaoYRoboUm = Convert.ToInt32(coordenadasAtuais[1]);
+            char direcaoRoboUm = Convert.ToChar(coordenadasAtuais[2]);
 
-            Console.WriteLine("Informe os comandos que o PRIMEIRO Robô deve executar:(Ex:EMEMEMEMM) ");
-            string comando = Console.ReadLine();
-            char[] instrucoes = comando.ToCharArray();
+            char[] instrucoes = comandosIniciais[0].ToCharArray();
+
             for (int i = 0; i < instrucoes.Length; i++)
             {
-                if (instrucoes[i] == 'D')
-                {
-                    if (direcao == 'N')
-                        direcao = 'L';
-                    else if (direcao == 'L')
-                        direcao = 'S';
-                    else if (direcao == 'S')
-                        direcao = 'O';
-                    else if (direcao == 'O')
-                        direcao = 'N';
-                }
-                else if (instrucoes[i] == 'E')
-                {
-                    if (direcao == 'N')
-                        direcao = 'O';
-                    else if (direcao == 'L')
-                        direcao = 'N';
-                    else if (direcao == 'S')
-                        direcao = 'L';
-                    else if (direcao == 'O')
-                        direcao = 'S';
+                char instrucaoAtual = instrucoes[i];
 
-                }
-                else if (instrucoes[i] == 'M')
-                {
-                    if (direcao == 'N')
-                        posicaoY++;
-                    else if (direcao == 'S')
-                        posicaoY--;
-                    else if (direcao == 'O')
-                        posicaoX--;
-                    else if (direcao == 'L')
-                        posicaoX++;
-                }
-            }
-            if (posicaoX > limiteX || posicaoY > limiteY)
-            {
-                Console.WriteLine("O Robô estrapolou o PRIMEIRO grid");
-                Console.ReadLine();
-            }
-            else 
-            {
-                Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
-                Console.ReadLine();
-            }
+                if (instrucaoAtual == 'E')
+                    direcaoRoboUm = VirarEsquerdaRoboUm(direcaoRoboUm);
 
+                else if (instrucaoAtual == 'D')
+                    direcaoRoboUm = VirarDireitaRoboUm(direcaoRoboUm);
 
-            //------------------------------------- SEGUNDO ROBÔ --------------------------------------------
-
-
-            Console.Write("Informe os valores do tamanho do SEGUNDO Grid (X espaço Y): ");
-            string[] grid2 = Console.ReadLine().Split(' ');
-            int limiteX2 = int.Parse(grid2[0]);
-            int limiteY2 = int.Parse(grid2[1]);
-
-            Console.WriteLine("Informe a posição inicial do SEGUNDO Robô no grid (X e Y) e o sentido que ele está: (ex: N,S,L, ou O):  ");
-            string[] posicoes2 = Console.ReadLine().Split(' ');
-            int posicaoX2 = int.Parse(posicoes2[0]);
-            int posicaoY2 = int.Parse(posicoes2[1]);
-            char direcao2 = char.Parse(posicoes2[2]);
-
-            Console.WriteLine("Informe os comandos que o SEGUNDO Robô deve executar:(Ex:EMEMEMEMM) ");
-            string comando2 = Console.ReadLine();
-            char[] instrucoes2 = comando2.ToCharArray();
-            for (int i = 0; i < instrucoes.Length; i++)
-            {
+                else if (instrucaoAtual == 'M')
+                    MoverRoboUm(ref posicaoXRoboUm, ref posicaoYRoboUm, direcaoRoboUm);
                 
-                if (instrucoes2[i] == 'D')
-                {
-                    if (direcao2 == 'N')
-                        direcao2 = 'L';
-                    else if (direcao2 == 'L')
-                        direcao2 = 'S';
-                    else if (direcao2 == 'S')
-                        direcao2 = 'O';
-                    else if (direcao2 == 'O')
-                        direcao2 = 'N';
-                }
-                else if (instrucoes2[i] == 'E')
-                {
-                    if (direcao2 == 'N')
-                        direcao2 = 'O';
-                    else if (direcao2 == 'L')
-                        direcao2 = 'N';
-                    else if (direcao2 == 'S')
-                        direcao2 = 'L';
-                    else if (direcao2 == 'O')
-                        direcao2 = 'S';
-
-                }
-                else if (instrucoes2[i] == 'M')
-                {
-                    if (direcao2 == 'N')
-                        posicaoY2++;
-                    else if (direcao2 == 'S')
-                        posicaoY2--;
-                    else if (direcao2 == 'O')
-                        posicaoX2--;
-                    else if (direcao2 == 'L')
-                        posicaoX2++;
-                }
             }
-            if (posicaoX2 > limiteX2 || posicaoY2 > limiteY2)
+            #endregion
+
+            #region Movimentos do segundo robô
+            coordenadasAtuais = posicoesIniciais[1].Split(' ');
+
+            int posicaoXRoboDois = Convert.ToInt32(coordenadasAtuais[0]);
+            int posicaoYRoboDois = Convert.ToInt32(coordenadasAtuais[1]);
+            char direcaoRoboDois = Convert.ToChar(coordenadasAtuais[2]);
+
+            instrucoes = comandosIniciais[1].ToCharArray();
+
+            for (int i = 0; i < instrucoes.Length; i++)
             {
-                Console.WriteLine("O Robô estrapolou o SEGUNDO grid");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine($"{posicaoX2} {posicaoY2} {direcao2}");
-                Console.ReadLine();
-            }
+                char instrucaoAtual = instrucoes[i];
 
+                // E - Vira pra esquerda
+                if (instrucaoAtual == 'E')
+                {
+                    if (direcaoRoboDois == 'N')
+                        direcaoRoboDois = 'O';
 
+                    else if (direcaoRoboDois == 'O')
+                        direcaoRoboDois = 'S';
+
+                    else if (direcaoRoboDois == 'S')
+                        direcaoRoboDois = 'L';
+
+                    else if (direcaoRoboDois == 'L')
+                        direcaoRoboDois = 'N';
+                }
+
+                // D - Vira pra direita
+                else if (instrucaoAtual == 'D')
+                {
+                    if (direcaoRoboDois == 'N')
+                        direcaoRoboDois = 'L';
+
+                    else if (direcaoRoboDois == 'L')
+                        direcaoRoboDois = 'S';
+
+                    else if (direcaoRoboDois == 'S')
+                        direcaoRoboDois = 'O';
+
+                    else if (direcaoRoboDois == 'O')
+                        direcaoRoboDois = 'N';
+                }
+
+                // M - Move pra frente
+                else if (instrucaoAtual == 'M')
+                {
+                    if (direcaoRoboDois == 'N')
+                        posicaoYRoboDois++;
+
+                    else if (direcaoRoboDois == 'S')
+                        posicaoYRoboDois--;
+
+                    else if (direcaoRoboDois == 'O')
+                        posicaoXRoboDois--;
+
+                    else if (direcaoRoboDois == 'L')
+                        posicaoXRoboDois++;
+                }
+            }
+            #endregion
+
+            Console.WriteLine($"{posicaoXRoboUm} {posicaoYRoboUm} {direcaoRoboUm}");
+            Console.WriteLine($"{posicaoXRoboDois} {posicaoYRoboDois} {direcaoRoboDois}");
+
+            Console.ReadLine();
         }
-        static void ExibirMenu()
+
+        private static void MoverRoboUm(ref int posicaoXRoboUm, ref int posicaoYRoboUm, char direcaoRoboUm)
         {
-            Console.Clear();
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Robo Tupiniquim - Missão Marte");
-            Console.WriteLine("---------------------------------------------");
+            if (direcaoRoboUm == 'N')
+                posicaoYRoboUm++;
+
+            else if (direcaoRoboUm == 'S')
+                posicaoYRoboUm--;
+
+            else if (direcaoRoboUm == 'O')
+                posicaoXRoboUm--;
+
+            else if (direcaoRoboUm == 'L')
+                posicaoXRoboUm++;
+        }
+
+        private static char VirarDireitaRoboUm(char direcaoRoboUm)
+        {
+            if (direcaoRoboUm == 'N')
+                direcaoRoboUm = 'L';
+
+            else if (direcaoRoboUm == 'L')
+                direcaoRoboUm = 'S';
+
+            else if (direcaoRoboUm == 'S')
+                direcaoRoboUm = 'O';
+
+            else if (direcaoRoboUm == 'O')
+                direcaoRoboUm = 'N';
+            return direcaoRoboUm;
+        }
+
+        private static char VirarEsquerdaRoboUm(char direcaoRoboUm)
+        {
+            if (direcaoRoboUm == 'N')
+                direcaoRoboUm = 'O';
+
+            else if (direcaoRoboUm == 'O')
+                direcaoRoboUm = 'S';
+
+            else if (direcaoRoboUm == 'S')
+                direcaoRoboUm = 'L';
+
+            else if (direcaoRoboUm == 'L')
+                direcaoRoboUm = 'N';
+
+            return direcaoRoboUm;
         }
     }
 }
