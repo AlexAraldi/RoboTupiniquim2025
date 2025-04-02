@@ -59,52 +59,17 @@ namespace RoboTupiniquim2025
             {
                 char instrucaoAtual = instrucoes[i];
 
-                // E - Vira pra esquerda
                 if (instrucaoAtual == 'E')
                 {
-                    if (direcaoRoboDois == 'N')
-                        direcaoRoboDois = 'O';
-
-                    else if (direcaoRoboDois == 'O')
-                        direcaoRoboDois = 'S';
-
-                    else if (direcaoRoboDois == 'S')
-                        direcaoRoboDois = 'L';
-
-                    else if (direcaoRoboDois == 'L')
-                        direcaoRoboDois = 'N';
+                    direcaoRoboDois = VirarEsquerdaRoboDois(direcaoRoboDois);
                 }
-
-                // D - Vira pra direita
                 else if (instrucaoAtual == 'D')
                 {
-                    if (direcaoRoboDois == 'N')
-                        direcaoRoboDois = 'L';
-
-                    else if (direcaoRoboDois == 'L')
-                        direcaoRoboDois = 'S';
-
-                    else if (direcaoRoboDois == 'S')
-                        direcaoRoboDois = 'O';
-
-                    else if (direcaoRoboDois == 'O')
-                        direcaoRoboDois = 'N';
+                    direcaoRoboDois = VirarDireitaRoboDois(direcaoRoboDois);
                 }
-
-                // M - Move pra frente
                 else if (instrucaoAtual == 'M')
                 {
-                    if (direcaoRoboDois == 'N')
-                        posicaoYRoboDois++;
-
-                    else if (direcaoRoboDois == 'S')
-                        posicaoYRoboDois--;
-
-                    else if (direcaoRoboDois == 'O')
-                        posicaoXRoboDois--;
-
-                    else if (direcaoRoboDois == 'L')
-                        posicaoXRoboDois++;
+                    MoverRoboDois(ref posicaoXRoboDois, ref posicaoYRoboDois, direcaoRoboDois);
                 }
             }
             #endregion
@@ -113,6 +78,53 @@ namespace RoboTupiniquim2025
             Console.WriteLine($"{posicaoXRoboDois} {posicaoYRoboDois} {direcaoRoboDois}");
 
             Console.ReadLine();
+        }
+
+        private static void MoverRoboDois(ref int posicaoXRoboDois, ref int posicaoYRoboDois, char direcaoRoboDois)
+        {
+            if (direcaoRoboDois == 'N')
+                posicaoYRoboDois++;
+
+            else if (direcaoRoboDois == 'S')
+                posicaoYRoboDois--;
+
+            else if (direcaoRoboDois == 'O')
+                posicaoXRoboDois--;
+
+            else if (direcaoRoboDois == 'L')
+                posicaoXRoboDois++;
+        }
+
+        private static char VirarDireitaRoboDois(char direcaoRoboDois)
+        {
+            if (direcaoRoboDois == 'N')
+                direcaoRoboDois = 'L';
+
+            else if (direcaoRoboDois == 'L')
+                direcaoRoboDois = 'S';
+
+            else if (direcaoRoboDois == 'S')
+                direcaoRoboDois = 'O';
+
+            else if (direcaoRoboDois == 'O')
+                direcaoRoboDois = 'N';
+            return direcaoRoboDois;
+        }
+
+        private static char VirarEsquerdaRoboDois(char direcaoRoboDois)
+        {
+            if (direcaoRoboDois == 'N')
+                direcaoRoboDois = 'O';
+
+            else if (direcaoRoboDois == 'O')
+                direcaoRoboDois = 'S';
+
+            else if (direcaoRoboDois == 'S')
+                direcaoRoboDois = 'L';
+
+            else if (direcaoRoboDois == 'L')
+                direcaoRoboDois = 'N';
+            return direcaoRoboDois;
         }
 
         private static void MoverRoboUm(ref int posicaoXRoboUm, ref int posicaoYRoboUm, char direcaoRoboUm)
