@@ -35,10 +35,10 @@ namespace RoboTupiniquim2025
                 char instrucaoAtual = instrucoes[i];
 
                 if (instrucaoAtual == 'E')
-                    direcaoRoboUm = Robo.VirarEsquerdaRoboUm();
+                   Robo.VirarEsquerdaRoboUm();
 
                 else if (instrucaoAtual == 'D')
-                    direcaoRoboUm = Robo.VirarDireitaRoboUm();
+                   Robo.VirarDireitaRoboUm();
 
                 else if (instrucaoAtual == 'M')
                     Robo.MoverRoboUm();
@@ -49,9 +49,9 @@ namespace RoboTupiniquim2025
             #region Movimentos do segundo robô
             coordenadasAtuais = posicoesIniciais[1].Split(' ');
 
-            int posicaoXRoboDois = Convert.ToInt32(coordenadasAtuais[0]);
-            int posicaoYRoboDois = Convert.ToInt32(coordenadasAtuais[1]);
-            char direcaoRoboDois = Convert.ToChar(coordenadasAtuais[2]);
+            Robo.posicaoXRoboDois = Convert.ToInt32(coordenadasAtuais[0]);
+            Robo.posicaoYRoboDois = Convert.ToInt32(coordenadasAtuais[1]);
+            Robo.direcaoRoboDois = Convert.ToChar(coordenadasAtuais[2]);
 
             instrucoes = comandosIniciais[1].ToCharArray();
 
@@ -61,21 +61,21 @@ namespace RoboTupiniquim2025
 
                 if (instrucaoAtual == 'E')
                 {
-                    direcaoRoboDois = Robo.VirarEsquerdaRoboDois(direcaoRoboDois);
+                   Robo.VirarEsquerdaRoboDois();
                 }
                 else if (instrucaoAtual == 'D')
                 {
-                    direcaoRoboDois = Robo.VirarDireitaRoboDois(direcaoRoboDois);
+                     Robo.VirarDireitaRoboDois();
                 }
                 else if (instrucaoAtual == 'M')
                 {
-                    Robo.MoverRoboDois(ref posicaoXRoboDois, ref posicaoYRoboDois, direcaoRoboDois);
+                    Robo.MoverRoboDois();
                 }
             }
             #endregion
 
-            Console.WriteLine($"{posicaoXRoboUm} {posicaoYRoboUm} {direcaoRoboUm}");
-            Console.WriteLine($"{posicaoXRoboDois} {posicaoYRoboDois} {direcaoRoboDois}");
+            Console.WriteLine(Robo.ObterLocalizacaoRoboUm());
+            Console.WriteLine(Robo.ObterLocalizacaoRoboDois());
 
             Console.ReadLine();
         }

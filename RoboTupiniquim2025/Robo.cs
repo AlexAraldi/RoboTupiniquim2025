@@ -6,8 +6,11 @@
     {
         public static int posicaoXRoboUm;
         public static int posicaoYRoboUm;
-        public static int direcaoRoboUm;
-    
+        public static char direcaoRoboUm;
+        public static int posicaoXRoboDois;
+        public static int posicaoYRoboDois;
+        public static char direcaoRoboDois;
+
         public static void MoverRoboUm()
         {
             if (direcaoRoboUm == 'N')
@@ -22,8 +25,7 @@
             else if (direcaoRoboUm == 'L')
                 posicaoXRoboUm++;
         }
-
-        public static char VirarDireitaRoboUm()
+        public static void VirarDireitaRoboUm()
         {
             if (direcaoRoboUm == 'N')
                 direcaoRoboUm = 'L';
@@ -36,10 +38,8 @@
 
             else if (direcaoRoboUm == 'O')
                 direcaoRoboUm = 'N';
-            return direcaoRoboUm;
         }
-
-        public static char VirarEsquerdaRoboUm()
+        public static void VirarEsquerdaRoboUm()
         {
             if (direcaoRoboUm == 'N')
                 direcaoRoboUm = 'O';
@@ -53,10 +53,14 @@
             else if (direcaoRoboUm == 'L')
                 direcaoRoboUm = 'N';
 
-            return direcaoRoboUm;
+        }
+        public static string ObterLocalizacaoRoboUm()
+        {
+            return $"{posicaoXRoboUm} {posicaoYRoboUm} {direcaoRoboUm}";
         }
 
-        public static void MoverRoboDois(ref int posicaoXRoboDois, ref int posicaoYRoboDois, char direcaoRoboDois)
+
+        public static void MoverRoboDois()
         {
             if (direcaoRoboDois == 'N')
                 posicaoYRoboDois++;
@@ -71,7 +75,7 @@
                 posicaoXRoboDois++;
         }
 
-        public static char VirarDireitaRoboDois(char direcaoRoboDois)
+        public static void VirarDireitaRoboDois()
         {
             if (direcaoRoboDois == 'N')
                 direcaoRoboDois = 'L';
@@ -84,10 +88,9 @@
 
             else if (direcaoRoboDois == 'O')
                 direcaoRoboDois = 'N';
-            return direcaoRoboDois;
         }
 
-        public static char VirarEsquerdaRoboDois(char direcaoRoboDois)
+        public static void VirarEsquerdaRoboDois()
         {
             if (direcaoRoboDois == 'N')
                 direcaoRoboDois = 'O';
@@ -100,8 +103,13 @@
 
             else if (direcaoRoboDois == 'L')
                 direcaoRoboDois = 'N';
-            return direcaoRoboDois;
         }
+
+        public static string ObterLocalizacaoRoboDois()
+        {
+            return $"{posicaoXRoboDois} {posicaoYRoboDois} {direcaoRoboDois}";
+        }
+
 
 
 
