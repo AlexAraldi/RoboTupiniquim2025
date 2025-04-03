@@ -1,5 +1,6 @@
 ﻿namespace RoboTupiniquim2025
-{       public static class RoboUm
+{
+    public static class RoboDois
     {
         public static int posicaoX;
         public static int posicaoY;
