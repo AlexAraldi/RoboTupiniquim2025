@@ -24,9 +24,9 @@ namespace RoboTupiniquim2025
             #region Movimentos do primeiro robô
             string[] coordenadasAtuais = posicoesIniciais[0].Split(' ');
 
-            int posicaoXRoboUm = Convert.ToInt32(coordenadasAtuais[0]);
-            int posicaoYRoboUm = Convert.ToInt32(coordenadasAtuais[1]);
-            char direcaoRoboUm = Convert.ToChar(coordenadasAtuais[2]);
+            Robo.posicaoXRoboUm = Convert.ToInt32(coordenadasAtuais[0]);
+            Robo.posicaoYRoboUm = Convert.ToInt32(coordenadasAtuais[1]);
+            Robo.direcaoRoboUm = Convert.ToChar(coordenadasAtuais[2]);
 
             char[] instrucoes = comandosIniciais[0].ToCharArray();
 
