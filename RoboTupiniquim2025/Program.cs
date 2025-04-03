@@ -35,13 +35,13 @@ namespace RoboTupiniquim2025
                 char instrucaoAtual = instrucoes[i];
 
                 if (instrucaoAtual == 'E')
-                    direcaoRoboUm = Robo.VirarEsquerdaRoboUm(direcaoRoboUm);
+                    direcaoRoboUm = Robo.VirarEsquerdaRoboUm();
 
                 else if (instrucaoAtual == 'D')
-                    direcaoRoboUm = Robo.VirarDireitaRoboUm(direcaoRoboUm);
+                    direcaoRoboUm = Robo.VirarDireitaRoboUm();
 
                 else if (instrucaoAtual == 'M')
-                    Robo.MoverRoboUm(ref posicaoXRoboUm, ref posicaoYRoboUm, direcaoRoboUm);
+                    Robo.MoverRoboUm();
                 
             }
             #endregion
