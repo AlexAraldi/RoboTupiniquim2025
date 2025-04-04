@@ -24,9 +24,9 @@ namespace RoboTupiniquim2025
             #region Movimentos do primeiro robô ---------------------------------------------------------------------------
             string[] coordenadasAtuais = posicoesIniciais[0].Split(' ');
 
-            RoboUm.posicaoX = Convert.ToInt32(coordenadasAtuais[0]);
-            RoboUm.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
-            RoboUm.direcao = Convert.ToChar(coordenadasAtuais[2]);
+            Robo.posicaoX = Convert.ToInt32(coordenadasAtuais[0]);
+            Robo.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
+            Robo.direcao = Convert.ToChar(coordenadasAtuais[2]);
 
             char[] instrucoes = comandosIniciais[0].ToCharArray();
 
@@ -35,13 +35,13 @@ namespace RoboTupiniquim2025
                 char instrucaoAtual = instrucoes[i];
 
                 if (instrucaoAtual == 'E')
-                   RoboUm.VirarEsquerda();
+                   Robo.VirarEsquerda();
 
                 else if (instrucaoAtual == 'D')
-                   RoboUm.VirarDireita();
+                   Robo.VirarDireita();
 
                 else if (instrucaoAtual == 'M')
-                    RoboUm.Mover();
+                    Robo.Mover();
                 
             }
             #endregion
@@ -74,7 +74,7 @@ namespace RoboTupiniquim2025
             }
             #endregion
 
-            Console.WriteLine(RoboUm.ObterLocalizacao());
+            Console.WriteLine(Robo.ObterLocalizacao());
             Console.WriteLine(RoboDois.ObterLocalizacao());
 
             Console.ReadLine();
