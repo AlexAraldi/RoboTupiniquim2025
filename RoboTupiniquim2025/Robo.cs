@@ -6,7 +6,6 @@
         public int posicaoX;
         public int posicaoY;
         public char direcao;
-        // pq tem variaiveis declaradas aqui e na main tb ?
 
         public void Explorar(char[] instrucoes)
         {
@@ -72,7 +71,8 @@
         {
             return $"{posicaoX} {posicaoY} {direcao}";
         }
-
+        
+       
         
     }
 }

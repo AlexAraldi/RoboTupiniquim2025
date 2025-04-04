@@ -36,9 +36,10 @@ namespace RoboTupiniquim2025
                 robo.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
                 robo.direcao = Convert.ToChar(coordenadasAtuais[2]);
 
-                char[] instrucoes = comandosIniciais[contador].ToCharArray();    //pq char [] instrucoes  aqui no robo um e nao nos demais ?
-
+                char[] instrucoes = comandosIniciais[contador].ToCharArray();
                 robo.Explorar(instrucoes);
+
+                Console.WriteLine(robo.nome);
 
                 Console.WriteLine(robo.ObterLocalizacao());
 
