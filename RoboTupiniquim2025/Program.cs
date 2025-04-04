@@ -17,65 +17,34 @@ namespace RoboTupiniquim2025
     {
         static void Main(string[] args)
         {
-
             string[] posicoesIniciais = ["1 2 N", "3 3 L"];
             string[] comandosIniciais = ["EMEMEMEMM", "MMDMMDMDDM"];
+            string[] nomesDosRobos = ["Azul", "Vermelho"];
 
-            #region Movimentos do primeiro robô ---------------------------------------------------------------------------
-            string[] coordenadasAtuais = posicoesIniciais[0].Split(' ');
+            int quantidadeRobos = 2;
 
-            Robo.posicaoX = Convert.ToInt32(coordenadasAtuais[0]);
-            Robo.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
-            Robo.direcao = Convert.ToChar(coordenadasAtuais[2]);
+            Robo[] robos = new Robo[quantidadeRobos];
 
-            char[] instrucoes = comandosIniciais[0].ToCharArray();
-
-            for (int i = 0; i < instrucoes.Length; i++)
+            for (int contador = 0; contador < robos.Length; contador++)
             {
-                char instrucaoAtual = instrucoes[i];
+                string[] coordenadasAtuais = posicoesIniciais[contador].Split(' ');
 
-                if (instrucaoAtual == 'E')
-                   Robo.VirarEsquerda();
+                Robo robo = new Robo();
 
-                else if (instrucaoAtual == 'D')
-                   Robo.VirarDireita();
+                robo.nome = nomesDosRobos[contador];
+                robo.posicaoX = Convert.ToInt32(coordenadasAtuais[0]);
+                robo.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
+                robo.direcao = Convert.ToChar(coordenadasAtuais[2]);
 
-                else if (instrucaoAtual == 'M')
-                    Robo.Mover();
+                char[] instrucoes = comandosIniciais[contador].ToCharArray();    //pq char [] instrucoes  aqui no robo um e nao nos demais ?
+
+                robo.Explorar(instrucoes);
+
+                Console.WriteLine(robo.ObterLocalizacao());
+
+                robos[contador] = robo;
                 
             }
-            #endregion
-
-            #region Movimentos do segundo robô ---------------------------------------------------------------------------
-            coordenadasAtuais = posicoesIniciais[1].Split(' ');
-
-            RoboDois.posicaoX = Convert.ToInt32(coordenadasAtuais[0]);
-            RoboDois.posicaoY = Convert.ToInt32(coordenadasAtuais[1]);
-            RoboDois.direcao = Convert.ToChar(coordenadasAtuais[2]);
-
-            instrucoes = comandosIniciais[1].ToCharArray();
-
-            for (int i = 0; i < instrucoes.Length; i++)
-            {
-                char instrucaoAtual = instrucoes[i];
-
-                if (instrucaoAtual == 'E')
-                {
-                   RoboDois.VirarEsquerda();
-                }
-                else if (instrucaoAtual == 'D')
-                {
-                     RoboDois.VirarDireita();
-                }
-                else if (instrucaoAtual == 'M')
-                {
-                    RoboDois.Mover();
-                }
-            }
-            #endregion
-
-            Console.WriteLine(Robo.ObterLocalizacao());
-            Console.WriteLine(RoboDois.ObterLocalizacao());
 
             Console.ReadLine();
         }

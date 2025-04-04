@@ -1,11 +1,32 @@
 ﻿namespace RoboTupiniquim2025
-{       public  class Robo
+{
+    public class Robo
     {
-        public  int posicaoX;
-        public  int posicaoY;
-        public  char direcao;
+        public string nome;
+        public int posicaoX;
+        public int posicaoY;
+        public char direcao;
+        // pq tem variaiveis declaradas aqui e na main tb ?
 
-        public  void Mover()
+        public void Explorar(char[] instrucoes)
+        {
+            for (int i = 0; i < instrucoes.Length; i++)
+            {
+                char instrucaoAtual = instrucoes[i];
+
+                if (instrucaoAtual == 'E')
+                    VirarEsquerda();
+
+                else if (instrucaoAtual == 'D')
+                    VirarDireita();
+
+                else if (instrucaoAtual == 'M')
+                    Mover();
+            }
+        }
+
+
+        public void Mover()
         {
             if (direcao == 'N')
                 posicaoY++;
@@ -19,7 +40,7 @@
             else if (direcao == 'L')
                 posicaoX++;
         }
-        public  void VirarDireita()
+        public void VirarDireita()
         {
             if (direcao == 'N')
                 direcao = 'L';
@@ -33,7 +54,7 @@
             else if (direcao == 'O')
                 direcao = 'N';
         }
-        public  void VirarEsquerda()
+        public void VirarEsquerda()
         {
             if (direcao == 'N')
                 direcao = 'O';
@@ -47,10 +68,11 @@
             else if (direcao == 'L')
                 direcao = 'N';
         }
-        public  string ObterLocalizacao()
+        public string ObterLocalizacao()
         {
             return $"{posicaoX} {posicaoY} {direcao}";
         }
 
+        
     }
 }
